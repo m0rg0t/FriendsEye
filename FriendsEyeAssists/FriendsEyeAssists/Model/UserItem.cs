@@ -17,12 +17,12 @@ namespace FriendsEyeAssists.Model
         /// <summary>
         /// User password
         /// </summary>
-        public string UserPassword
+        public string Password
         {
             get { return _userPassword; }
             set { 
                 _userPassword = value;
-                RaisePropertyChanged("UserPassword");
+                RaisePropertyChanged("Password");
             }
         }        
 
@@ -61,6 +61,7 @@ namespace FriendsEyeAssists.Model
             set { 
                 _buddyUser = value;
                 this.Age = this._buddyUser.Age;
+                this.Email = this._buddyUser.Email.ToString();
                 RaisePropertyChanged("BuddyUser");
             }
         }

@@ -24,18 +24,7 @@ namespace FriendsEyeAssists
 
         private async void StackPanel_Tap(object sender, GestureEventArgs e)
         {
-            try
-            {
-                if ((this.Login.Text!="") && (this.Password.Password!="")) {
-                    await ViewModelLocator.MainStatic.LoginUser();
-                    try
-                    {
-                        this.NavigationService.Navigate(new Uri("/Pages/MainPage.xaml", UriKind.Relative));
-                    }
-                    catch { };
-                };
-            }
-            catch { };
+
         }
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
@@ -43,6 +32,39 @@ namespace FriendsEyeAssists
             try
             {
                 this.NavigationService.Navigate(new Uri("/Pages/RegisterPage.xaml", UriKind.Relative));
+            }
+            catch { };
+        }
+
+        private void Login_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                this.Password.Focus();
+            };
+        }
+
+        private async void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                this.Focus();
+                if ((this.Login.Text != "") && (this.Password.Password != ""))
+                {
+                    bool result = await ViewModelLocator.MainStatic.LoginUser();
+                    try
+                    {
+                        if (result)
+                        {
+                            this.NavigationService.Navigate(new Uri("/Pages/MainPage.xaml", UriKind.Relative));
+                        }
+                        else
+                        {
+                            MessageBox.Show("Не удалось авторизоваться!");
+                        };
+                    }
+                    catch { };
+                };
             }
             catch { };
         }

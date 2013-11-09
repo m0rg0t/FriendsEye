@@ -11,6 +11,9 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    xmlns:telerikCore="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core"
+           DataContext="{Binding Main, Source={StaticResource Locator}}"                  
     shell:SystemTray.IsVisible="{Binding Loading}"
     shell:SystemTray.Opacity="0">
 
@@ -20,6 +23,13 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+
+        <telerikPrimitives:RadBusyIndicator x:Name="BusyBar" Grid.RowSpan="2"
+                                            IsRunning="{Binding Loading}"
+                                            DataContext="{Binding Main, Source={StaticResource Locator}}"  
+                                            Foreground="{StaticResource PhoneAccentBrush}"
+                                            Canvas.ZIndex="1" Content="Авторизация..." />
+
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
@@ -31,17 +41,17 @@
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
 			<StackPanel Tap="StackPanel_Tap">
 				<TextBlock Text="Логин"/>
-                <TextBox Text="{Binding User.UserName}"
+                <TextBox Text="{Binding User.UserName, Mode=TwoWay}"
                          DataContext="{Binding Main, Source={StaticResource Locator}}" 
-                         Name="Login"/>
+                         Name="Login" KeyDown="Login_KeyDown"/>
 
 				<TextBlock Text="Пароль"/>
                 <PasswordBox 
-                    Password="{Binding User.Password}" 
+                    Password="{Binding User.Password, Mode=TwoWay}" 
                     DataContext="{Binding Main, Source={StaticResource Locator}}" 
                     Name="Password"/>
                 
-                <Button Content="Вход" Name="LoginButton"/>
+                <Button Content="Вход" Name="LoginButton" Click="LoginButton_Click"/>
                 <Button Content="Регистрация" Name="RegisterButton" Click="RegisterButton_Click"/>
 			</StackPanel>
 		</Grid>

@@ -35,6 +35,7 @@ namespace FriendsEyeAssists.ViewModel
             ////{
             ////    // Code runs "for real"
             ////}
+            User = new UserItem();
         }
 
         private bool _loading = false;
@@ -44,36 +45,77 @@ namespace FriendsEyeAssists.ViewModel
         public bool Loading
         {
             get { return _loading; }
-            set { 
+            set
+            {
                 _loading = value;
                 RaisePropertyChanged("Loading");
             }
         }
-        
+
 
         /// <summary>
         /// 
         /// </summary>
         public BuddyClient client = new BuddyClient(App.API_LOGIN, App.API_PASSWORD);
 
-        /// <summary>
-        /// Main user in app
-        /// </summary>
-        public UserItem User = new UserItem();
 
+        private UserItem _user = new UserItem();
+        /// <summary>
+        /// 
+        /// </summary>
+        public UserItem User
+        {
+            get { return _user; }
+            set
+            {
+                _user = value;
+                RaisePropertyChanged("User");
+            }
+        }
+
+        /// <summary>
+        /// Авторизация пользователя
+        /// </summary>
+        /// <returns></returns>
         public async Task<bool> LoginUser()
         {
-            AuthenticatedUser userAuth = await client.LoginAsync(this.User.UserName, this.User.UserPassword);
-            this.User.BuddyUser = userAuth;
-            return true;
+            this.Loading = true;
+            try
+            {
+                AuthenticatedUser userAuth = await client.LoginAsync(this.User.UserName, this.User.Password);
+                this.User.BuddyUser = userAuth;
+                this.Loading = false;
+                return true;
+            }
+            catch {
+                this.Loading = false;
+                return false;
+            };
         }
-        
+
 
         /// <summary>
         /// Регистрация пользователя
         /// </summary>
-        public void RegisterUser()
+        public async Task<bool> RegisterUser()
         {
+            this.Loading = true;
+            try
+            {
+                AuthenticatedUser userAuth = await client.CreateUserAsync(name: this.User.UserName, password: this.User.Password,
+                       age: this.User.Age, email: this.User.Email, fuzzLocation: false, appTag: "FriendsEye");
+                this.User.BuddyUser = userAuth;
+                this.Loading = false;
+                if (userAuth!=null) {
+                return true; }
+                else { return false; };
+            }
+            catch {
+                this.Loading = false;
+                return false;
+            };
+            return true;
+        /*
             //Create a user account
             client.CreateUserAsync((user, state) =>
             {
@@ -91,9 +133,9 @@ namespace FriendsEyeAssists.ViewModel
                         MessageBox.Show("User creation was a success!");
                     });
                 }
-            }, name: this.User.UserName, password: this.User.UserPassword, 
+            }, name: this.User.UserName, password: this.User.Password, 
                //All of the arguments below are optional
-                   gender: UserGender.Female, age: this.User.Age, email: "test@buddy.com", fuzzLocation: false, appTag: "FriendsEye", state: string.Empty);
+                   gender: UserGender.Female, age: this.User.Age, email: this.User.Email, fuzzLocation: false, appTag: "FriendsEye", state: string.Empty);*/
         }
 
 

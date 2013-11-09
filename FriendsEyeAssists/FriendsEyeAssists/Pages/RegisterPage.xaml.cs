@@ -18,11 +18,13 @@ namespace FriendsEyeAssists.Pages
             InitializeComponent();
         }
 
-        private void RegisterAppbarButton_Click(object sender, EventArgs e)
+        private async void RegisterAppbarButton_Click(object sender, EventArgs e)
         {
             try
             {
-                ViewModelLocator.MainStatic.RegisterUser();
+                //ViewModelLocator.MainStatic.User.UserName = this.Use
+
+                bool result = await ViewModelLocator.MainStatic.RegisterUser();
                 this.NavigationService.Navigate(new Uri("/Pages/MainPage.xaml", UriKind.Relative));
             }
             catch { };

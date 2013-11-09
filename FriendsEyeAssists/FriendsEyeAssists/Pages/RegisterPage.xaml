@@ -9,9 +9,13 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    xmlns:telerikCore="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core"
+        DataContext="{Binding Main, Source={StaticResource Locator}}" 
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="{Binding Loading}"
+    shell:SystemTray.Opacity="0">
 	<phone:PhoneApplicationPage.ApplicationBar>
 		<shell:ApplicationBar>
 			<shell:ApplicationBarIconButton x:Name="RegisterAppbarButton" IconUri="/Assets/AppBar/check.png" Text="Регистрация" Click="RegisterAppbarButton_Click"/>
@@ -26,9 +30,15 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <telerikPrimitives:RadBusyIndicator x:Name="BusyBar" Grid.RowSpan="2"
+                                            IsRunning="{Binding Loading}"
+                                            DataContext="{Binding Main, Source={StaticResource Locator}}"  
+                                            Foreground="{StaticResource PhoneAccentBrush}"
+                                            Canvas.ZIndex="1" Content="Регистрация..." />
+
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock Text="FriendsEye Assists" Style="{StaticResource PhoneTextNormalStyle}"/>
             <TextBlock Text="page name" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
@@ -36,24 +46,24 @@
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <StackPanel>
                 <TextBlock Text="Логин"/>
-                <TextBox Text="{Binding User.UserName}"
-                         DataContext="{Binding Main, Source={StaticResource Locator}}" 
+                <TextBox Text="{Binding UserName, Mode=TwoWay}"
+                         DataContext="{Binding Main.User, Source={StaticResource Locator}}" 
                          Name="Login"/>
 
                 <TextBlock Text="Пароль"/>
                 <PasswordBox 
-                    Password="{Binding User.Password}" 
-                    DataContext="{Binding Main, Source={StaticResource Locator}}" 
+                    Password="{Binding Password, Mode=TwoWay}" 
+                    DataContext="{Binding Main.User, Source={StaticResource Locator}}" 
                     Name="Password"/>
 
                 <TextBlock Text="Возраст"/>
-                <TextBox Text="{Binding User.Age}"
+                <TextBox Text="{Binding User.Age, Mode=TwoWay}"
                          InputScope="Number"
                          DataContext="{Binding Main, Source={StaticResource Locator}}" 
                          Name="AgeText"/>
 
                 <TextBlock Text="Почта"/>
-                <TextBox Text="{Binding User.Email}"
+                <TextBox Text="{Binding User.Email, Mode=TwoWay}"
                          DataContext="{Binding Main, Source={StaticResource Locator}}" 
                          Name="Email"/>
 

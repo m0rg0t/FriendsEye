@@ -16,16 +16,41 @@
 
     <!--LayoutRoot contains the root grid where all other page content is placed-->
     <Grid x:Name="LayoutRoot">
-        <controls:Panorama Title="my application">
+        <controls:Panorama>
+            <controls:Panorama.Title>
+                <TextBlock 
+                    Margin="10,20,0,0"
+                    Text="Friends Eye Assists" FontSize="80"/>
+            </controls:Panorama.Title>
 
             <!--Panorama item one-->
-            <controls:PanoramaItem Header="item1">
+            <controls:PanoramaItem Header="Запросы">
                 <Grid/>
             </controls:PanoramaItem>
 
             <!--Panorama item two-->
-            <controls:PanoramaItem Header="item2">
-                <Grid/>
+            <controls:PanoramaItem Header="Профиль">
+                    <Grid>
+                    <StackPanel>
+                        <TextBlock Text="Логин:"/>
+                        <TextBlock 
+                         Name="ProfileUserName" 
+                         Text="{Binding User.UserName, Mode=TwoWay}"
+                         DataContext="{Binding Main, Source={StaticResource Locator}}"/>
+
+                        <TextBlock Text="Возраст:"/>
+                        <TextBlock 
+                         Name="ProfileUserAge" 
+                         Text="{Binding User.Age, Mode=TwoWay}"
+                         DataContext="{Binding Main, Source={StaticResource Locator}}"/>
+
+                        <TextBlock Text="Почта:"/>
+                        <TextBlock 
+                         Name="ProfileUserEmail" 
+                         Text="{Binding User.Email, Mode=TwoWay}"
+                         DataContext="{Binding Main, Source={StaticResource Locator}}"/>
+                    </StackPanel>
+                </Grid>
             </controls:PanoramaItem>
         </controls:Panorama>
     </Grid>
