@@ -109,6 +109,8 @@
     <Compile Include="HubPage.xaml.cs">
       <DependentUpon>HubPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\AssistAnswer.cs" />
+    <Compile Include="Model\AssistsPhoto.cs" />
     <Compile Include="SectionPage.xaml.cs">
       <DependentUpon>SectionPage.xaml</DependentUpon>
     </Compile>
@@ -177,6 +179,12 @@
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\netcore45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Parse">
+      <HintPath>..\packages\Parse.1.2.9\lib\netcore45\Parse.dll</HintPath>
+    </Reference>
+    <Reference Include="Parse.WinRT">
+      <HintPath>..\packages\Parse.1.2.9\lib\netcore45\Parse.WinRT.dll</HintPath>
     </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
