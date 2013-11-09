@@ -1,5 +1,6 @@
 ﻿using FriendsEyeAssist_w8.Common;
 using FriendsEyeAssist_w8.Data;
+using FriendsEyeAssist_w8.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -67,6 +68,15 @@ namespace FriendsEyeAssist_w8
             // TODO: Создание соответствующей модели данных для области проблемы, чтобы заменить пример данных
             var sampleDataGroup = await SampleDataSource.GetGroupAsync("Group-4");
             this.DefaultViewModel["Section3Items"] = sampleDataGroup;
+
+            try
+            {
+                if (ViewModelLocator.MainStatic.PhotoItems.Count() < 1)
+                {
+                    ViewModelLocator.MainStatic.LoadData();
+                };
+            }
+            catch { };
         }
 
         /// <summary>
@@ -89,10 +99,14 @@ namespace FriendsEyeAssist_w8
         /// <param name="e">Данные о событии, описывающие нажатый элемент.</param>
         void ItemView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            // Переход к соответствующей странице назначения и настройка новой страницы
-            // путем передачи необходимой информации в виде параметра навигации
-            var itemId = ((SampleDataItem)e.ClickedItem).UniqueId;
-            this.Frame.Navigate(typeof(ItemPage), itemId);
+            try
+            {
+                // Переход к соответствующей странице назначения и настройка новой страницы
+                // путем передачи необходимой информации в виде параметра навигации
+                var itemId = ((SampleDataItem)e.ClickedItem).UniqueId;
+                this.Frame.Navigate(typeof(ItemPage), itemId);
+            }
+            catch { };
         }
         #region Регистрация NavigationHelper
 

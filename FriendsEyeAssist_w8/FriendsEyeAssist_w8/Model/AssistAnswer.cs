@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BitBankWP_places_app.Model
+namespace FriendsEyeAssist_w8.Model
 {
     public class AssistAnswer: ViewModelBase
     {

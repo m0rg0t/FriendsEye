@@ -20,11 +20,11 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Border Background="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}" Height="150">
-                    <Image Source="{Binding ImagePath}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
+                    <Image Source="{Binding Image}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
                 </Border>
                 <StackPanel Grid.Row="1" Margin="0,10,0,0">
-                    <TextBlock Text="{Binding Title}" Style="{StaticResource TitleTextBlockStyle}" TextWrapping="NoWrap"/>
-                    <TextBlock Text="{Binding Description}" Style="{StaticResource BodyTextBlockStyle}" MaxHeight="60" />
+                    <!--<TextBlock Text="{Binding Comment}" Style="{StaticResource TitleTextBlockStyle}" TextWrapping="NoWrap"/>-->
+                    <TextBlock Text="{Binding Comment}" Style="{StaticResource BodyTextBlockStyle}" MaxHeight="60" />
                 </StackPanel>
             </Grid>
         </DataTemplate>
@@ -107,8 +107,9 @@
                 <DataTemplate>
                     <GridView
                         x:Name="itemGridView"
-                        ItemsSource="{Binding Items}"
+                        ItemsSource="{Binding PhotoItems}"
                         Margin="-9,-14,0,0"
+                        DataContext="{Binding Main, Source={StaticResource Locator}}" 
                         AutomationProperties.AutomationId="ItemGridView"
                         AutomationProperties.Name="Items In Group"
                         ItemTemplate="{StaticResource Standard310x260ItemTemplate}"
@@ -119,9 +120,8 @@
                     </GridView>
                 </DataTemplate>
             </HubSection>
-            <HubSection x:Uid="Section4Header" Header="Section 4">
-                <DataTemplate>
-                    <!-- ширина 400 -->
+            <!--<HubSection x:Uid="Section4Header" Header="Section 4">
+                <DataTemplate>                    
                     <StackPanel Orientation="Vertical">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -148,7 +148,7 @@
                         </Grid>
                     </StackPanel>
                 </DataTemplate>
-            </HubSection>
+            </HubSection>-->
         </Hub>
     </Grid>
 </Page>

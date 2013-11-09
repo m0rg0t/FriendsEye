@@ -9,7 +9,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using Windows.UI.Xaml.Media.Imaging;
 
-namespace BitBankWP_places_app.Model
+namespace FriendsEyeAssist_w8.Model
 {
     public class AssistsPhoto: ViewModelBase
     {

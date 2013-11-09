@@ -1,5 +1,5 @@
 ﻿using FriendsEyeAssist_w8.Common;
-
+using Parse;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -92,6 +92,9 @@ namespace FriendsEyeAssist_w8
             }
             // Обеспечение активности текущего окна
             Window.Current.Activate();
+
+            ParseClient.Initialize("bthlugArbHCrcDgbuHPS5Uiz3lZbWvmU2EIjBgaV", "SPE35IPobltfR4wHXipwa8uIFZuNoiI2tY0QHpCV");
+            ParseFacebookUtils.Initialize("690850497593331");
         }
 
         /// <summary>
