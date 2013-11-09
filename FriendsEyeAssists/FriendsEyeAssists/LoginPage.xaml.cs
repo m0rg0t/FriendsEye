@@ -13,10 +13,10 @@ using Microsoft.Phone.Controls;
 
 namespace FriendsEyeAssists
 {
-    public partial class MainPage : PhoneApplicationPage
+    public partial class LoginPage : PhoneApplicationPage
     {
         // Constructor
-        public MainPage()
+        public LoginPage()
         {
             InitializeComponent();
         }
