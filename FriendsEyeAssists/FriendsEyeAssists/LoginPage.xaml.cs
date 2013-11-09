@@ -22,11 +22,6 @@ namespace FriendsEyeAssists
             InitializeComponent();
         }
 
-        private async void StackPanel_Tap(object sender, GestureEventArgs e)
-        {
-
-        }
-
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -51,7 +46,7 @@ namespace FriendsEyeAssists
                 this.Focus();
                 if ((this.Login.Text != "") && (this.Password.Password != ""))
                 {
-                    bool result = await ViewModelLocator.MainStatic.LoginUser();
+                    bool result = await ViewModelLocator.MainStatic.BuddyItem.LoginUser();
                     try
                     {
                         if (result)

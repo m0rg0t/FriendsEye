@@ -14,7 +14,7 @@
         DataContext="{Binding Main, Source={StaticResource Locator}}" 
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
-    shell:SystemTray.IsVisible="{Binding Loading}"
+    shell:SystemTray.IsVisible="{Binding BuddyItem.Loading}"
     shell:SystemTray.Opacity="0">
 	<phone:PhoneApplicationPage.ApplicationBar>
 		<shell:ApplicationBar>
@@ -31,7 +31,7 @@
         </Grid.RowDefinitions>
 
         <telerikPrimitives:RadBusyIndicator x:Name="BusyBar" Grid.RowSpan="2"
-                                            IsRunning="{Binding Loading}"
+                                            IsRunning="{Binding BuddyItem.Loading}"
                                             DataContext="{Binding Main, Source={StaticResource Locator}}"  
                                             Foreground="{StaticResource PhoneAccentBrush}"
                                             Canvas.ZIndex="1" Content="Регистрация..." />
@@ -47,23 +47,23 @@
             <StackPanel>
                 <TextBlock Text="Логин"/>
                 <TextBox Text="{Binding UserName, Mode=TwoWay}"
-                         DataContext="{Binding Main.User, Source={StaticResource Locator}}" 
+                         DataContext="{Binding Main.BuddyItem.User, Source={StaticResource Locator}}" 
                          Name="Login" KeyDown="Login_KeyDown"/>
 
                 <TextBlock Text="Пароль"/>
                 <PasswordBox 
                     Password="{Binding Password, Mode=TwoWay}" 
-                    DataContext="{Binding Main.User, Source={StaticResource Locator}}" 
+                    DataContext="{Binding Main.BuddyItem.User, Source={StaticResource Locator}}" 
                     Name="Password" KeyDown="Password_KeyDown"/>
 
                 <TextBlock Text="Возраст"/>
-                <TextBox Text="{Binding User.Age, Mode=TwoWay}"
+                <TextBox Text="{Binding BuddyItem.User.Age, Mode=TwoWay}"
                          InputScope="Number"
                          DataContext="{Binding Main, Source={StaticResource Locator}}" 
                          Name="AgeText"/>
 
                 <TextBlock Text="Почта"/>
-                <TextBox Text="{Binding User.Email, Mode=TwoWay}"
+                <TextBox Text="{Binding BuddyItem.User.Email, Mode=TwoWay}"
                          DataContext="{Binding Main, Source={StaticResource Locator}}" 
                          Name="Email"/>
 

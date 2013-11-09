@@ -26,14 +26,14 @@ namespace FriendsEyeAssists.Pages
                 this.Focus();
                 //ViewModelLocator.MainStatic.User.UserName = this.Use
 
-                bool result = await ViewModelLocator.MainStatic.RegisterUser();
+                bool result = await ViewModelLocator.MainStatic.BuddyItem.RegisterUser();
                 if (result)
                 {
                     this.NavigationService.Navigate(new Uri("/Pages/MainPage.xaml", UriKind.Relative));
                 }
                 else
                 {
-                    MessageBox.Show();
+                    MessageBox.Show("Не удалось зарегистрироваться");
                 };
             }
             catch { };

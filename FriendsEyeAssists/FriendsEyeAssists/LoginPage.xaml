@@ -14,7 +14,7 @@
     xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
     xmlns:telerikCore="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core"
            DataContext="{Binding Main, Source={StaticResource Locator}}"                  
-    shell:SystemTray.IsVisible="{Binding Loading}"
+    shell:SystemTray.IsVisible="{Binding BuddyItem.Loading}"
     shell:SystemTray.Opacity="0">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
@@ -25,7 +25,7 @@
         </Grid.RowDefinitions>
 
         <telerikPrimitives:RadBusyIndicator x:Name="BusyBar" Grid.RowSpan="2"
-                                            IsRunning="{Binding Loading}"
+                                            IsRunning="{Binding BuddyItem.Loading}"
                                             DataContext="{Binding Main, Source={StaticResource Locator}}"  
                                             Foreground="{StaticResource PhoneAccentBrush}"
                                             Canvas.ZIndex="1" Content="Авторизация..." />
@@ -39,15 +39,15 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-			<StackPanel Tap="StackPanel_Tap">
+			<StackPanel>
 				<TextBlock Text="Логин"/>
-                <TextBox Text="{Binding User.UserName, Mode=TwoWay}"
+                <TextBox Text="{Binding BuddyItem.User.UserName, Mode=TwoWay}"
                          DataContext="{Binding Main, Source={StaticResource Locator}}" 
                          Name="Login" KeyDown="Login_KeyDown"/>
 
 				<TextBlock Text="Пароль"/>
                 <PasswordBox 
-                    Password="{Binding User.Password, Mode=TwoWay}" 
+                    Password="{Binding BuddyItem.User.Password, Mode=TwoWay}" 
                     DataContext="{Binding Main, Source={StaticResource Locator}}" 
                     Name="Password"/>
                 

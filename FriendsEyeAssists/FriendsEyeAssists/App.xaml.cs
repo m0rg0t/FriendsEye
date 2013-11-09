@@ -23,8 +23,8 @@ namespace FriendsEyeAssists
         /// <returns>The root frame of the Phone Application.</returns>
         public PhoneApplicationFrame RootFrame { get; private set; }
 
-        public static string API_LOGIN = "FriendsEye"; //Get it from Buddy's site
-        public static string API_PASSWORD = "C5A92B64-0583-4ED7-93D5-9C133DFB2904"; //same as above
+        public const string API_LOGIN = "FriendsEye"; //Get it from Buddy's site
+        public const string API_PASSWORD = "C5A92B64-0583-4ED7-93D5-9C133DFB2904"; //same as above
 
         /// <summary>
         /// Constructor for the Application object.
