@@ -78,7 +78,7 @@ namespace BitBankWP_places_app.Pages
             this.BusyBar.IsRunning = true;
             try
             {
-                ViewModelLocator.MainStatic.NewComment.PlaceId = ViewModelLocator.MainStatic.CurrentItem.ObjectId;
+                ViewModelLocator.MainStatic.NewComment.PhotoId = ViewModelLocator.MainStatic.CurrentItem.ObjectId;
                 ViewModelLocator.MainStatic.NewComment.Comment = this.Comment.Text;
                 await ViewModelLocator.MainStatic.SaveAnswerToParse(ViewModelLocator.MainStatic.NewComment);
                 this.BusyBar.IsRunning = false;

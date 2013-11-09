@@ -123,13 +123,13 @@
                     <telerikData:RadJumpList 
                         Margin="0,0,0,0" Width="Auto"                
                         Name="AnswersList"
-                        ItemsSource="{Binding CommentItems}"
+                        ItemsSource="{Binding AssistsAnswersItems}"
                         DataContext="{Binding Main.CurrentItem, Source={StaticResource Locator}}" 
                         VerticalAlignment="Stretch"
                         HorizontalContentAlignment="Left" HorizontalAlignment="Stretch" 
                         EmptyContent="{Binding Path=LocalizedResources.NoData, 
                             Source={StaticResource LocalizedStrings}}" 
-                        ItemTemplate="{StaticResource CommentItem}">
+                        ItemTemplate="{StaticResource AnswerItem}">
                     </telerikData:RadJumpList>
                 </Grid>
             </phone:PanoramaItem>

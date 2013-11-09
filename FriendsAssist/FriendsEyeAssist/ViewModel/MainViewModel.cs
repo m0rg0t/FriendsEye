@@ -385,7 +385,7 @@ namespace BitBankWP_places_app.ViewModel
             {
                 ParseObject place = new ParseObject("Comment");
                 place["comment"] = item.Comment;
-                place["photoId"] = item.PlaceId;
+                place["photoId"] = item.PhotoId;
                 place["userId"] = ViewModelLocator.MainStatic.User.ObjectId;
 
                 place["userImage"] = ViewModelLocator.MainStatic.User.UserImage;

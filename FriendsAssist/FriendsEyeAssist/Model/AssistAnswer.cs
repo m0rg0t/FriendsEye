@@ -52,16 +52,16 @@ namespace BitBankWP_places_app.Model
             }
         }
 
-        private string _placeId;
+        private string _photoId;
         /// <summary>
         /// 
         /// </summary>
-        public string PlaceId
+        public string PhotoId
         {
-            get { return _placeId; }
+            get { return _photoId; }
             set { 
-                _placeId = value;
-                RaisePropertyChanged("PlaceId");
+                _photoId = value;
+                RaisePropertyChanged("PhotoId");
             }
         }
 

@@ -183,16 +183,16 @@ namespace BitBankWP_places_app.Model
             }
         }
 
-        private List<AssistAnswer> _commentItems;
+        private List<AssistAnswer> _AssistsAnswersItems;
         /// <summary>
         /// Комментарии к записи
         /// </summary>
         public List<AssistAnswer> AssistsAnswersItems
         {
-            get { return _commentItems; }
+            get { return _AssistsAnswersItems; }
             set
             {
-                _commentItems = value;
+                _AssistsAnswersItems = value;
                 RaisePropertyChanged("AssistsAnswersItems");
             }
         }
@@ -219,7 +219,7 @@ namespace BitBankWP_places_app.Model
                         cItem.Comment = item.Get<string>("comment");
                         cItem.UserName = item.Get<string>("userName");
                         cItem.UserImage = item.Get<string>("userImage");
-                        cItem.PlaceId = item.Get<string>("photoId");
+                        cItem.PhotoId = item.Get<string>("photoId");
                         cItem.ObjectId = item.ObjectId.ToString();
                         cItem.CreatedDate = item.CreatedAt.Value;
                         answersList.Add(cItem);

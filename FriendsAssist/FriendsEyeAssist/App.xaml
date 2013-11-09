@@ -16,7 +16,7 @@
         </StackPanel>
       </Grid>
     </DataTemplate>
-    <DataTemplate x:Name="CommentItem">
+        <DataTemplate x:Name="AnswerItem">
       <Grid Margin="15,20,0,0" Width="Auto">
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="120" />
