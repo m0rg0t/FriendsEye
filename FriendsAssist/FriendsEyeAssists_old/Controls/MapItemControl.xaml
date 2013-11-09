@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="FriendsEyeAssists.Controls.MapItemControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="85" d:DesignWidth="42">
+    
+    <Grid x:Name="LayoutRoot">
+        <!--Background="{StaticResource PhoneChromeBrush}"-->
+        <Image Width="42" Height="85" Source="/Assets/map-arr_black.png" Stretch="None"/>
+        <!--<Image Width="82" Height="63" VerticalAlignment="Top" 
+               Margin="0,3,0,0"
+               x:Name="MainPhoto" Source="{Binding Image}" Stretch="UniformToFill"/>-->
+    </Grid>
+</UserControl>
