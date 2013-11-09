@@ -1,0 +1,7 @@
+<Application x:Class="FriendsEyeAssist_w8.App" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="using:FriendsEyeAssist_w8" xmlns:localData="using:FriendsEyeAssist_w8.Data">
+  <Application.Resources>
+    <!-- Ресурсы, зависящие от приложения -->
+        <x:String x:Key="AppName">Friends Eye Assist</x:String>
+    <vm:ViewModelLocator x:Key="Locator" xmlns:vm="using:FriendsEyeAssist_w8.ViewModel" />
+  </Application.Resources>
+</Application>
