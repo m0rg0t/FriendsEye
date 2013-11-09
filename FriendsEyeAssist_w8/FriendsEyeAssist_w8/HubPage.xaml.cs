@@ -1,4 +1,5 @@
 ﻿using FriendsEyeAssist_w8.Common;
+using FriendsEyeAssist_w8.Controls;
 using FriendsEyeAssist_w8.Data;
 using FriendsEyeAssist_w8.ViewModel;
 using System;
@@ -8,12 +9,14 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.ApplicationSettings;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // Шаблон элемента страницы концентратора задокументирован по адресу http://go.microsoft.com/fwlink/?LinkID=321224
@@ -121,12 +124,47 @@ namespace FriendsEyeAssist_w8
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            SettingsPane.GetForCurrentView().CommandsRequested += Settings_CommandsRequested;
             navigationHelper.OnNavigatedTo(e);
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
+            SettingsPane.GetForCurrentView().CommandsRequested -= Settings_CommandsRequested;
             navigationHelper.OnNavigatedFrom(e);
+        }
+
+        void Settings_CommandsRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
+        {
+            try
+            {
+                var viewAboutPage = new SettingsCommand("", "Об авторе", cmd =>
+                {
+                    Windows.UI.Xaml.Controls.SettingsFlyout settings = new Windows.UI.Xaml.Controls.SettingsFlyout();
+                    settings.Width = 500;
+                    //settings.HeaderBackground = new SolidColorBrush(App.VisualElements.BackgroundColor);
+                    //.HeaderForeground = new SolidColorBrush(Colors.Black);
+                    settings.Title = "Об авторе"; //string.Format("{0} Custom 2", App.VisualElements.DisplayName);
+                    settings.IconSource = new BitmapImage(Windows.ApplicationModel.Package.Current.Logo);
+                    settings.Content = new About();
+                    settings.Show();
+                });
+                args.Request.ApplicationCommands.Add(viewAboutPage);
+
+                var viewAboutMalukahPage = new SettingsCommand("", "Политика конфиденциальности", cmd =>
+                {
+                    Windows.UI.Xaml.Controls.SettingsFlyout settings = new Windows.UI.Xaml.Controls.SettingsFlyout();
+                    settings.Width = 500;
+                    //settings.HeaderBackground = new SolidColorBrush(App.VisualElements.BackgroundColor);
+                    //.HeaderForeground = new SolidColorBrush(Colors.Black);
+                    settings.Title = "Политика конфиденциальности"; //string.Format("{0} Custom 2", App.VisualElements.DisplayName);
+                    settings.IconSource = new BitmapImage(Windows.ApplicationModel.Package.Current.Logo);
+                    settings.Content = new Privacy();
+                    settings.Show();
+                });
+                args.Request.ApplicationCommands.Add(viewAboutMalukahPage);
+            }
+            catch { };
         }
 
         #endregion

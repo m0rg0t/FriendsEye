@@ -62,8 +62,17 @@
                 <HubSection.Background>
                     <ImageBrush ImageSource="Assets/MediumGray.png" Stretch="UniformToFill" />
                 </HubSection.Background>
+                <DataTemplate>
+                    <Grid>
+                        <ProgressRing IsEnabled="True" Width="120" Height="120"
+                                        Canvas.ZIndex="4000"
+                                        Margin="20"
+                                        DataContext="{Binding Main, Source={StaticResource Locator}}" 
+                                        IsActive="{Binding Loading}"/>
+                    </Grid>
+                </DataTemplate>
             </HubSection>
-            <HubSection Width="500" x:Uid="Section1Header" Header="Section 1">
+            <!--<HubSection Width="500" x:Uid="Section1Header" Header="Section 1">
                 <DataTemplate>
                     <Grid>
                         <Grid.RowDefinitions>
@@ -101,8 +110,9 @@
                                    x:Uid="LongText" Text="Lorem ipsum dolor sit amet, consectetuer ising elit, sed diam nonummy nibh uismod tincidunt ut laoreet suscipit lobortis ni ut wisi quipexerci quis consequat minim veniam, quis nostrud exerci tation ullam corper. Lorem ipsum dolor sit amet, consectetuer ising elit, sed diam nonummy nibh uismod tincidunt ut laoreet suscipit lobortis ni ut wisi quipexerci quis consequat minim veniam, quis nostrud exerci tation ullam corper."/>
                     </Grid>
                 </DataTemplate>
-            </HubSection>
-            <HubSection IsHeaderInteractive="True" DataContext="{Binding Section3Items}" d:DataContext="{Binding Groups[3], Source={d:DesignData Source=/DataModel/SampleData.json, Type=data:SampleDataSource}}"
+            </HubSection>-->
+            <HubSection IsHeaderInteractive="True" DataContext="{Binding Section3Items}" 
+                        d:DataContext="{Binding Groups[3], Source={d:DesignData Source=/DataModel/SampleData.json, Type=data:SampleDataSource}}"
                         x:Uid="Section3Header" Header="Section 3" Padding="40,40,40,32">
                 <DataTemplate>
                     <GridView
