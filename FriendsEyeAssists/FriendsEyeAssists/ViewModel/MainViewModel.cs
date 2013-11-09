@@ -2,6 +2,7 @@ using Buddy;
 using FriendsEyeAssists.Model;
 using GalaSoft.MvvmLight;
 using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 
@@ -41,13 +42,24 @@ namespace FriendsEyeAssists.ViewModel
         /// </summary>
         public BuddyClient client = new BuddyClient(App.API_LOGIN, App.API_PASSWORD);
 
+        /// <summary>
+        /// Main user in app
+        /// </summary>
         public UserItem User = new UserItem();
 
+        public async Task<bool> LoginUser()
+        {
+            AuthenticatedUser userAuth = await client.LoginAsync(this.User.UserName, this.User.UserPassword);
+            this.User.BuddyUser = userAuth;
+            return true;
+        }
+        
+
+        /// <summary>
+        /// Регистрация пользователя
+        /// </summary>
         public void RegisterUser()
         {
-            //Constants
-            
-            
             //Create a user account
             client.CreateUserAsync((user, state) =>
             {
@@ -70,5 +82,7 @@ namespace FriendsEyeAssists.ViewModel
                    gender: UserGender.Female, age: 37, email: "test@buddy.com", status: UserStatus.Engaged, fuzzLocation: false,
                    celebrityMode: false, appTag: "WinSDKDocApp", state: string.Empty);
         }
+
+
     }
 }

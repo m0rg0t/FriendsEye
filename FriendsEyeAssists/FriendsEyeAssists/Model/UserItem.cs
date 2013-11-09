@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight;
+﻿using Buddy;
+using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,32 @@ namespace FriendsEyeAssists.Model
             set { 
                 _userName = value;
                 RaisePropertyChanged("UserName");
+            }
+        }
+
+        private int _age = 18;
+        /// <summary>
+        /// Users age
+        /// </summary>
+        public int Age
+        {
+            get { return _age; }
+            set { 
+                _age = value;
+            }
+        }
+
+        private AuthenticatedUser _buddyUser;
+        /// <summary>
+        /// buddy user item
+        /// </summary>
+        public AuthenticatedUser BuddyUser
+        {
+            get { return _buddyUser; }
+            set { 
+                _buddyUser = value;
+                this.Age = this._buddyUser.Age;
+                RaisePropertyChanged("BuddyUser");
             }
         }
         
