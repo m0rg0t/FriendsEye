@@ -64,6 +64,20 @@ namespace FriendsEyeAssists.Model
                 RaisePropertyChanged("BuddyUser");
             }
         }
+
+        private string _email;
+        /// <summary>
+        /// user email
+        /// </summary>
+        public string Email
+        {
+            get { return _email; }
+            set { 
+                _email = value;
+                RaisePropertyChanged("Email");
+            }
+        }
+        
         
     }
 }

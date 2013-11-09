@@ -37,6 +37,20 @@ namespace FriendsEyeAssists.ViewModel
             ////}
         }
 
+        private bool _loading = false;
+        /// <summary>
+        /// When data is loading
+        /// </summary>
+        public bool Loading
+        {
+            get { return _loading; }
+            set { 
+                _loading = value;
+                RaisePropertyChanged("Loading");
+            }
+        }
+        
+
         /// <summary>
         /// 
         /// </summary>
@@ -79,8 +93,7 @@ namespace FriendsEyeAssists.ViewModel
                 }
             }, name: this.User.UserName, password: this.User.UserPassword, 
                //All of the arguments below are optional
-                   gender: UserGender.Female, age: 37, email: "test@buddy.com", status: UserStatus.Engaged, fuzzLocation: false,
-                   celebrityMode: false, appTag: "WinSDKDocApp", state: string.Empty);
+                   gender: UserGender.Female, age: this.User.Age, email: "test@buddy.com", fuzzLocation: false, appTag: "FriendsEye", state: string.Empty);
         }
 
 

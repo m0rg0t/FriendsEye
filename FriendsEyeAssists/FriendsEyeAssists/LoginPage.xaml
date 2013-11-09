@@ -11,7 +11,8 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="{Binding Loading}"
+    shell:SystemTray.Opacity="0">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
@@ -30,10 +31,15 @@
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
 			<StackPanel Tap="StackPanel_Tap">
 				<TextBlock Text="Логин"/>
-				<TextBox Text="" Name="Login"/>
+                <TextBox Text="{Binding User.UserName}"
+                         DataContext="{Binding Main, Source={StaticResource Locator}}" 
+                         Name="Login"/>
 
 				<TextBlock Text="Пароль"/>
-				<TextBox Text="" Name="Password"/>
+                <PasswordBox 
+                    Password="{Binding User.Password}" 
+                    DataContext="{Binding Main, Source={StaticResource Locator}}" 
+                    Name="Password"/>
                 
                 <Button Content="Вход" Name="LoginButton"/>
                 <Button Content="Регистрация" Name="RegisterButton" Click="RegisterButton_Click"/>

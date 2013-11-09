@@ -26,7 +26,7 @@ namespace FriendsEyeAssists
         {
             try
             {
-                if ((this.Login.Text!="") && (this.Password.Text!="")) {
+                if ((this.Login.Text!="") && (this.Password.Password!="")) {
                     await ViewModelLocator.MainStatic.LoginUser();
                     try
                     {
