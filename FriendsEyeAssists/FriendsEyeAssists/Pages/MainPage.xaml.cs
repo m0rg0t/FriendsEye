@@ -19,5 +19,21 @@ namespace FriendsEyeAssists.Pages
         {
             InitializeComponent();
         }
+
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                // clear navigation stack
+                if (NavigationService.CanGoBack)
+                {
+                    while (NavigationService.RemoveBackEntry() != null)
+                    {
+                        NavigationService.RemoveBackEntry();
+                    };
+                };
+            }
+            catch { };
+        }
     }
 }

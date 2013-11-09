@@ -39,7 +39,7 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
             <TextBlock Text="FriendsEye Assists" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="page name" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock Text="Регистрация" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
@@ -48,13 +48,13 @@
                 <TextBlock Text="Логин"/>
                 <TextBox Text="{Binding UserName, Mode=TwoWay}"
                          DataContext="{Binding Main.User, Source={StaticResource Locator}}" 
-                         Name="Login"/>
+                         Name="Login" KeyDown="Login_KeyDown"/>
 
                 <TextBlock Text="Пароль"/>
                 <PasswordBox 
                     Password="{Binding Password, Mode=TwoWay}" 
                     DataContext="{Binding Main.User, Source={StaticResource Locator}}" 
-                    Name="Password"/>
+                    Name="Password" KeyDown="Password_KeyDown"/>
 
                 <TextBlock Text="Возраст"/>
                 <TextBox Text="{Binding User.Age, Mode=TwoWay}"

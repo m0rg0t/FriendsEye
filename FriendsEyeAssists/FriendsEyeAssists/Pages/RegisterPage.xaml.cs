@@ -8,6 +8,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using FriendsEyeAssists.ViewModel;
+using System.Windows.Input;
 
 namespace FriendsEyeAssists.Pages
 {
@@ -22,10 +23,18 @@ namespace FriendsEyeAssists.Pages
         {
             try
             {
+                this.Focus();
                 //ViewModelLocator.MainStatic.User.UserName = this.Use
 
                 bool result = await ViewModelLocator.MainStatic.RegisterUser();
-                this.NavigationService.Navigate(new Uri("/Pages/MainPage.xaml", UriKind.Relative));
+                if (result)
+                {
+                    this.NavigationService.Navigate(new Uri("/Pages/MainPage.xaml", UriKind.Relative));
+                }
+                else
+                {
+                    MessageBox.Show();
+                };
             }
             catch { };
         }
@@ -37,6 +46,22 @@ namespace FriendsEyeAssists.Pages
                 this.NavigationService.GoBack();
             }
             catch { };
+        }
+
+        private void Login_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                this.Password.Focus();
+            };
+        }
+
+        private void Password_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                this.AgeText.Focus();
+            };
         }
     }
 }
