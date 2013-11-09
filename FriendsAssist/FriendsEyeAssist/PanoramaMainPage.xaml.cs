@@ -13,6 +13,7 @@ using Parse;
 using System.Windows.Controls.Primitives;
 using Facebook;
 using Coding4Fun.Toolkit.Controls;
+using Windows.Phone.Speech.Synthesis;
 
 namespace BitBankWP_places_app
 {
@@ -106,12 +107,12 @@ namespace BitBankWP_places_app
             catch { };
         }
 
-        private void NearestTile_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private async void NearestTile_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             MainPanorama.DefaultItem = MainPanorama.Items[1];
         }
 
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        private async void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -121,6 +122,9 @@ namespace BitBankWP_places_app
                 };                
             }
             catch { };
+
+            //SpeechSynthesizer synth = new SpeechSynthesizer();
+            //await synth.SpeakTextAsync("Насекомые (лат. Insécta) — класс беспозвоночных членистоногих животных. Вместе с многоножками относятся к подтипу трахейнодышащих. Название класса происходит от глагола «сечь» (насекать) и представляет собой кальку с французского «insecte» (латинского insectum), означающего «животное с насечками». Тело насекомых покрыто хитинизированной кутикулой, образующей экзоскелет, и состоит из трёх отделов: головы, груди и брюшка.");
         }
 
         private void AddTile_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -186,6 +190,15 @@ namespace BitBankWP_places_app
                     IsCancelVisible = false
                 };
                 messagePrompt.Show();
+            }
+            catch { };
+        }
+
+        private void RadSlideHubTile_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            try
+            {
+                this.NavigationService.Navigate(new Uri("/Pages/ProfilePage.xaml", UriKind.Relative));
             }
             catch { };
         }

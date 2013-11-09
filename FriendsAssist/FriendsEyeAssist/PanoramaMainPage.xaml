@@ -79,7 +79,7 @@
                             Visibility="{Binding User.LoggedInVisibility}"
                             DataContext="{Binding Main, Source={StaticResource Locator}}"
                             Title="{Binding Path=LocalizedResources.ProfileTitle, 
-                            Source={StaticResource LocalizedStrings}}"
+                            Source={StaticResource LocalizedStrings}}" Tap="RadSlideHubTile_Tap"
                             >
                             <telerikPrimitives:RadSlideHubTile.Picture>
                                 <Image Source="{Binding User.UserImage}"

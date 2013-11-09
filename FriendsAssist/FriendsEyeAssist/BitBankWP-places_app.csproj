@@ -125,6 +125,9 @@
     <Compile Include="Pages\MapPage.xaml.cs">
       <DependentUpon>MapPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ProfilePage.xaml.cs">
+      <DependentUpon>ProfilePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ViewPhotoPage.xaml.cs">
       <DependentUpon>ViewPhotoPage.xaml</DependentUpon>
     </Compile>
@@ -172,6 +175,10 @@
     </Page>
     <Page Include="Pages\MapPage.xaml">
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\ProfilePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\ViewPhotoPage.xaml">
       <SubType>Designer</SubType>
