@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using Parse;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,29 @@ namespace BitBankWP_places_app.ViewModel
                 RaisePropertyChanged("FacebookId");
             }
         }
+
+        public async void GetStats()
+        {
+            var query = from item in ParseObject.GetQuery("AssistAnswer")
+                        where item["userId"] == this.ObjectId
+                        select item;
+            var count = await query.CountAsync();
+            AnswersCount = count;
+        }
+
+        private int _AnswersCount;
+        /// <summary>
+        /// Количество ответов пользователя
+        /// </summary>
+        public int AnswersCount
+        {
+            get { return _AnswersCount; }
+            set { 
+                _AnswersCount = value;
+                RaisePropertyChanged("AnswersCount");
+            }
+        }
+        
 
         private bool _isLogged;
         /// <summary>

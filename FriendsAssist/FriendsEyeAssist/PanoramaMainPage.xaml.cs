@@ -52,6 +52,8 @@ namespace BitBankWP_places_app
 
                     ViewModelLocator.MainStatic.User.ObjectId = user.ObjectId.ToString();
 
+                    ViewModelLocator.MainStatic.User.GetStats();
+
                     // available picture types: square (50x50), small (50xvariable height), large (about 200x variable height) (all size in pixels)
                     // for more info visit http://developers.facebook.com/docs/reference/api
                     string profilePictureUrl = string.Format("https://graph.facebook.com/{0}/picture?type={1}&access_token={2}",

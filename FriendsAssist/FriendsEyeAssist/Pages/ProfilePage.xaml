@@ -52,7 +52,8 @@
                     <TextBlock x:Name="LastName" Text="{Binding LastName}"></TextBlock>
                 </StackPanel>
                 <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Margin="0,5,0,0">
-
+                    <TextBlock Text="Колество ответов:"/>
+                    <TextBlock Text="{Binding AnswersCount}"/>
                 </StackPanel>
             </Grid>
         </Grid>
