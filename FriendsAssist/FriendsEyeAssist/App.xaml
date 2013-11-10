@@ -6,13 +6,13 @@
     <DataTemplate x:Name="PlaceItem">
       <Grid Margin="15,20,0,0" Width="Auto">
         <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="90" />
+          <ColumnDefinition Width="120" />
           <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Image Grid.Column="0" Width="90" Source="{Binding Image}" VerticalAlignment="Center" />
+        <Image Grid.Column="0" Width="120" Source="{Binding Image}" VerticalAlignment="Center" />
         <StackPanel Grid.Column="1" Margin="15,-5,0,0" VerticalAlignment="Top" HorizontalAlignment="Stretch" Width="Auto">
-          <TextBlock Text="{Binding Title}" TextWrapping="NoWrap" />
-          <TextBlock Text="{Binding Comment}" TextWrapping="NoWrap" />
+          <TextBlock Text="{Binding CreatedString}" TextWrapping="NoWrap" />
+          <TextBlock Text="{Binding Comment}" TextWrapping="Wrap" />
         </StackPanel>
       </Grid>
     </DataTemplate>

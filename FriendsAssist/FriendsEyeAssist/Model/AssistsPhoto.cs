@@ -69,18 +69,36 @@ namespace BitBankWP_places_app.Model
             set { 
                 _createdAt = value;
                 RaisePropertyChanged("CreatedAt");
+                RaisePropertyChanged("CreatedString");
             }
         }
 
-        private DateTime _updatedAT;
+        private string _createdString;
+        /// <summary>
+        /// When photo was created
+        /// </summary>
+        public string CreatedString
+        {
+            get {
+                _createdString = this.CreatedAt.ToString();
+                return _createdString; 
+            }
+            set { 
+                _createdString = value;
+                RaisePropertyChanged("CreatedString");
+            }
+        }
+        
+
+        private DateTime _updatedAt;
         /// <summary>
         /// 
         /// </summary>
         public DateTime UpdatedAt
         {
-            get { return _updatedAT; }
+            get { return _updatedAt; }
             set { 
-                _updatedAT = value;
+                _updatedAt = value;
                 RaisePropertyChanged("UpdatedAt");
             }
         }

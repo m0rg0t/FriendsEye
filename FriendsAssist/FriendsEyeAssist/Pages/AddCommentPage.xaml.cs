@@ -80,6 +80,7 @@ namespace BitBankWP_places_app.Pages
             {
                 ViewModelLocator.MainStatic.NewComment.PhotoId = ViewModelLocator.MainStatic.CurrentItem.ObjectId;
                 ViewModelLocator.MainStatic.NewComment.Comment = this.Comment.Text;
+                
                 await ViewModelLocator.MainStatic.SaveAnswerToParse(ViewModelLocator.MainStatic.NewComment);
                 this.BusyBar.IsRunning = false;
                 this.NavigationService.GoBack();

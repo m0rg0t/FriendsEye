@@ -167,7 +167,7 @@ namespace BitBankWP_places_app
         {
             try
             {
-                ViewModelLocator.MainStatic.CurrentItem = (this.NearestPlacesList.SelectedItem as AssistsPhoto);
+                ViewModelLocator.MainStatic.CurrentItem = (this.UnfinishedList.SelectedItem as AssistsPhoto);
                 this.NavigationService.Navigate(new Uri("/Pages/ViewPHotoPage.xaml", UriKind.Relative));
             }
             catch { };

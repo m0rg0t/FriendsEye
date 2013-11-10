@@ -168,5 +168,16 @@ namespace FriendsEyeAssist_w8
         }
 
         #endregion
+
+        private void map_ManipulationStarted(object sender, ManipulationStartedRoutedEventArgs e)
+        {
+            e.Handled = true;
+            e.Complete();
+        }
+
+        private void map_PointerWheelChanged(object sender, PointerRoutedEventArgs e)
+        {
+            e.Handled = true;
+        }
     }
 }

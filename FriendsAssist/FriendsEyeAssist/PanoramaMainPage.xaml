@@ -56,8 +56,7 @@
                             Name="MapTile" Tap="MapTile_Tap"/>
                         <telerikPrimitives:RadMosaicHubTile Title="{Binding Path=LocalizedResources.NearestTitle, 
                             Source={StaticResource LocalizedStrings}}" 
-                            ImageSources="{Binding Path=NearestImages}"
-                            
+                            ImageSources="{Binding Path=NearestImages}"                            
                             DataContext="{Binding Main, Source={StaticResource Locator}}" 
                             Name="NearestTile" Tap="NearestTile_Tap"/>
                         <telerikPrimitives:RadHubTile 
@@ -119,7 +118,7 @@
                 <Grid Margin="10,-30,0,0">
                     <telerikData:RadJumpList 
                         Margin="0,0,0,0" Width="Auto"                
-                        x:Name="SearchPlacesList"                                          
+                        x:Name="UnfinishedList"                                          
                         ItemsSource="{Binding Path=PhotoItems}"
                         ItemTemplate="{StaticResource PlaceItem}"
                         DataContext="{Binding Main, Source={StaticResource Locator}}" 

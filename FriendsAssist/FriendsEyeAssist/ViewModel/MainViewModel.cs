@@ -103,6 +103,8 @@ namespace BitBankWP_places_app.ViewModel
                 PhotoItem.Lat = item.Get<double>("lat");
                 PhotoItem.Lon = item.Get<double>("lon");
                 PhotoItem.ObjectId = item.ObjectId.ToString();
+                PhotoItem.CreatedAt = item.CreatedAt.Value;
+                PhotoItem.UpdatedAt = item.UpdatedAt.Value;
                 try
                 {                    
                     var file = item.Get<ParseFile>("photo");
@@ -383,13 +385,13 @@ namespace BitBankWP_places_app.ViewModel
             this.Loading = true;
             try
             {
-                ParseObject place = new ParseObject("Comment");
+                ParseObject place = new ParseObject("AssistAnswer");
                 place["comment"] = item.Comment;
                 place["photoId"] = item.PhotoId;
                 place["userId"] = ViewModelLocator.MainStatic.User.ObjectId;
 
-                place["userImage"] = ViewModelLocator.MainStatic.User.UserImage;
-                place["userName"] = ViewModelLocator.MainStatic.User.Username;
+                place["authorImage"] = ViewModelLocator.MainStatic.User.UserImage;
+                place["authorUsername"] = ViewModelLocator.MainStatic.User.Username;
 
                 await place.SaveAsync();
 
@@ -415,6 +417,7 @@ namespace BitBankWP_places_app.ViewModel
             {
                 await LoadNearPhotos();
                 await LoadSomePlaces();
+                RaisePropertyChanged("NearestImages");
             }
             catch { };
             this.Loading = false;
