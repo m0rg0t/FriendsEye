@@ -214,5 +214,11 @@ namespace BitBankWP_places_app
             }
             catch { };
         }
+
+        private void UpdateAppbarButton_Click(object sender, System.EventArgs e)
+        {
+        	// TODO: Add event handler implementation here.
+			ViewModelLocator.MainStatic.LoadData();
+        }
     }
 }

@@ -27,6 +27,7 @@
 				<shell:ApplicationBarMenuItem x:Name="PrivacyPolicyMenu" Text="Политика конфиденциальности" Click="PrivacyPolicyMenu_Click"/>
 				<!--<shell:ApplicationBarMenuItem x:Name="LocationToggleMenu" Text="Вкл\выкл геолокацию"/>-->
 			</shell:ApplicationBar.MenuItems>
+			<shell:ApplicationBarIconButton x:Name="UpdateAppbarButton" IconUri="/Assets/AppBar/refresh.png" Text="Обновить" Click="UpdateAppbarButton_Click"/>
 		</shell:ApplicationBar>
 	</phone:PhoneApplicationPage.ApplicationBar>
 
@@ -41,7 +42,7 @@
         <phone:Panorama Name="MainPanorama">
             <phone:Panorama.Title>
                 <!--<Image Margin="0,50,0,0" Source="/Assets/logo.png"/>-->
-                <TextBlock Text="FriendsEye Assist" FontSize="70" Margin="0,30,0,0"/>
+                <TextBlock Text="FriendsEye Assist" FontSize="70" Margin="0,40,0,0"/>
             </phone:Panorama.Title>
 
             <!--Panorama item one-->
