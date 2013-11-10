@@ -117,8 +117,8 @@
                 			</Grid.RowDefinitions>
                 			<Image VerticalAlignment="Top" Grid.ColumnSpan="100" Grid.RowSpan="100"  Stretch="None"
                 				HorizontalAlignment="Right" Source="Assets/back1_.png"/>
-                			<StackPanel Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="0,130">
-                				<Image Stretch="None" Source="Assets/mainlogo.png" />
+                			<StackPanel Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="-70,90,0,0">
+                				<Image Stretch="None" Source="Assets/type_white.png" />
                 			</StackPanel>
                 			<Border x:Name="LoginArea" Grid.Column="0" Grid.RowSpan="4" Background="#DB644E" Width="190" Height="190" Tapped="LoginArea_Tapped">
                 				<TextBlock Text="Log in" FontSize="20" 

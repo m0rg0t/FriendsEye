@@ -2,6 +2,7 @@
 using FriendsEyeAssist_w8.Common;
 using FriendsEyeAssist_w8.Controls;
 using FriendsEyeAssist_w8.Data;
+using FriendsEyeAssist_w8.Model;
 using FriendsEyeAssist_w8.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -123,7 +124,7 @@ namespace FriendsEyeAssist_w8
             {
                 // Переход к соответствующей странице назначения и настройка новой страницы
                 // путем передачи необходимой информации в виде параметра навигации
-                var itemId = ((SampleDataItem)e.ClickedItem).UniqueId;
+                var itemId = ((AssistsPhoto)e.ClickedItem).ObjectId;
                 this.Frame.Navigate(typeof(ItemPage), itemId);
             }
             catch { };

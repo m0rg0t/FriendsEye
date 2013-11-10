@@ -16,7 +16,7 @@
         * Строка 0 содержит кнопку "Назад" и заголовок страницы
         * Строка 1 содержит оставшуюся часть страницы
     -->
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    <Grid Background="#E7B833"
         DataContext="{Binding Item}"
         d:DataContext="{Binding Groups[0].Items[0], Source={d:DesignData Source=/DataModel/SampleData.json, Type=data:SampleDataSource}}">
         <Grid.ChildrenTransitions>
@@ -33,7 +33,35 @@
             TODO: Содержимое должно размещается в следующей сетке
                   для отображения сведений для текущего элемента
         -->
-        <Grid Grid.Row="1" x:Name="contentRegion"/>
+        <Grid Grid.Row="1" x:Name="contentRegion">
+            
+            <Grid Height="768" Width="480" Margin="0,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Border Background="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}" Height="380">
+                    <Image Stretch="UniformToFill" Source="{Binding Image}" AutomationProperties.Name="{Binding Title}"/>
+                </Border>
+                <StackPanel Grid.Row="1">
+                    <Border Width="480" Height="94" Background="White">
+                        <TextBlock Text="Перекресток" Foreground="Black" FontSize="22" FontFamily="Segoe UI Semibold" Margin="20"/>
+                    </Border>
+                    <Border Background="#E1E2DD" Width="480" Height="290">
+                        <StackPanel Margin="20">
+                            <!--<TextBlock Text="{Binding Comment}" Style="{StaticResource TitleTextBlockStyle}" TextWrapping="NoWrap"/>-->
+
+                            <TextBlock Text="{Binding CategoryStatus}" 
+                                       FontSize="30"
+                                       Foreground="#699407" Style="{StaticResource BodyTextBlockStyle}" MaxHeight="60" />
+                            <TextBlock Text="{Binding Comment}" TextWrapping="Wrap"
+                                       FontSize="26" Foreground="Black" Margin="0,10,0,0"
+                                       Style="{StaticResource BodyTextBlockStyle}" MaxHeight="200" />
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Grid>
+        </Grid>
 
         <!-- Кнопка "Назад" и заголовок страницы -->
         <Grid>
@@ -47,7 +75,7 @@
                         AutomationProperties.Name="Back"
                         AutomationProperties.AutomationId="BackButton"
                         AutomationProperties.ItemType="Navigation Button"/>
-            <TextBlock x:Name="pageTitle" Text="{Binding Title}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
+            <TextBlock x:Name="pageTitle" Text="Просмотр информации о запросе" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
         </Grid>
     </Grid>

@@ -1,5 +1,7 @@
 ﻿using FriendsEyeAssist_w8.Common;
 using FriendsEyeAssist_w8.Data;
+using FriendsEyeAssist_w8.Model;
+using FriendsEyeAssist_w8.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -67,8 +69,36 @@ namespace FriendsEyeAssist_w8
         private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             // TODO: Создание соответствующей модели данных для области проблемы, чтобы заменить пример данных
-            var item = await SampleDataSource.GetItemAsync((String)e.NavigationParameter);
-            this.DefaultViewModel["Item"] = item;
+            try {
+                var item = ViewModelLocator.MainStatic.NearestPhotoItems.FirstOrDefault(c => c.ObjectId == (String)e.NavigationParameter);
+                if (item != null)
+                {
+                    this.DefaultViewModel["Item"] = item;
+
+                    await ((AssistsPhoto)item).LoadAnswers();
+                    //itemGridView.ItemsSource = ((AssistsPhoto)item).AssistsAnswersItems;
+                }
+                else
+                {
+                    try
+                    {
+                        var item2 = ViewModelLocator.MainStatic.PhotoItems.FirstOrDefault(c => c.ObjectId == (String)e.NavigationParameter);
+                        if (item2 != null)
+                        {
+                            this.DefaultViewModel["Item"] = item2;
+
+                            await ((AssistsPhoto)item2).LoadAnswers();
+                            //itemGridView.ItemsSource = ((AssistsPhoto)item2).AssistsAnswersItems;
+                        };
+                    }
+                    catch { };
+                };
+            }
+            catch { };
+
+            
+            //var item = await SampleDataSource.GetItemAsync((String)e.NavigationParameter);
+            //this.DefaultViewModel["Item"] = item;
         }
 
         #region Регистрация NavigationHelper
