@@ -2,7 +2,7 @@
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US" />
   <App xmlns="" ProductID="{cbe842ae-c7ed-4712-bce3-3f50a4da136b}" Title="FriendsEye Assist" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="BitBankWP_places_app author" Description="FriendsEye Assist" Publisher="BitBankWP_places_app" PublisherID="{37e42707-84b8-41b8-afee-3c18bc1156b9}">
-    <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
+    <IconPath IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileSmall.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
       <Capability Name="ID_CAP_MEDIALIB_AUDIO" />

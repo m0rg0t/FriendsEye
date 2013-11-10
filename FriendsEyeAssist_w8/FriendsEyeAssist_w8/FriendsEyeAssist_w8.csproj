@@ -138,10 +138,13 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="Assets\active_group.png" />
     <Content Include="Assets\back1.png" />
     <Content Include="Assets\back1_.png" />
     <Content Include="Assets\back2.png" />
     <Content Include="Assets\mainlogo.png" />
+    <Content Include="Assets\nearest.png" />
+    <Content Include="Assets\requests_history.png" />
     <Content Include="protoWin-02_Images\Image.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

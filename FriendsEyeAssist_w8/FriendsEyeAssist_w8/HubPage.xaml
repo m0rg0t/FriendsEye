@@ -14,7 +14,7 @@
 
     <Page.Resources>
         <!-- Совместимый с сеткой шаблон элемента 310 на 260 пикселей, как показано в разделе 4 -->
-        <DataTemplate x:Key="Standard310x260ItemTemplate">
+        <DataTemplate x:Key="StandardPhotoItemTemplate">
             <Grid Height="768" Width="480" Margin="0,0,0,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -28,9 +28,15 @@
                     <TextBlock Text="Перекресток" Foreground="Black"/>
                 </Border>
                 <Border Background="#E1E2DD" Width="480" Height="290">
-                    <StackPanel Margin="0,10,0,0">
-                        <!--<TextBlock Text="{Binding Comment}" Style="{StaticResource TitleTextBlockStyle}" TextWrapping="NoWrap"/>-->
-                        <TextBlock Text="{Binding Comment}" Style="{StaticResource BodyTextBlockStyle}" MaxHeight="60" />
+                        <StackPanel Margin="20">
+                            <!--<TextBlock Text="{Binding Comment}" Style="{StaticResource TitleTextBlockStyle}" TextWrapping="NoWrap"/>-->
+
+                            <TextBlock Text="{Binding CategoryStatus}" 
+                                       FontSize="30"
+                                       Foreground="#699407" Style="{StaticResource BodyTextBlockStyle}" MaxHeight="60" />
+                            <TextBlock Text="{Binding Comment}" TextWrapping="Wrap"
+                                       FontSize="26" Foreground="Black" Margin="0,10,0,0"
+                                       Style="{StaticResource BodyTextBlockStyle}" MaxHeight="200" />
                     </StackPanel>
                 </Border>
                 </StackPanel>
@@ -72,7 +78,10 @@
                 </HubSection.Background>-->
                 <DataTemplate>
                     <Grid>
-                        <TextBlock Text="История запросов" Foreground="#676767" FontSize="30"/>
+                        <StackPanel>
+                            <TextBlock Text="История запросов" Foreground="#676767" FontSize="30"/>
+                            <Image Source="Assets/requests_history.png" Stretch="None" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                        </StackPanel>
                     </Grid>
                 </DataTemplate>
             </HubSection>
@@ -175,19 +184,48 @@
                         d:DataContext="{Binding Groups[3], Source={d:DesignData Source=/DataModel/SampleData.json, Type=data:SampleDataSource}}"
                         Padding="40,40,40,32">
                 <DataTemplate>
+                    <Grid>
+                        
                     <GridView
                         x:Name="itemGridView"
-                        ItemsSource="{Binding PhotoItems}"
+                        ItemsSource="{Binding LastNearestPhotoItems}"
                         Margin="-43,-14,0,0"
                         DataContext="{Binding Main, Source={StaticResource Locator}}" 
                         AutomationProperties.AutomationId="ItemGridView"
                         AutomationProperties.Name="Items In Group"
-                        ItemTemplate="{StaticResource Standard310x260ItemTemplate}"
+                        ItemTemplate="{StaticResource StandardPhotoItemTemplate}"
                         SelectionMode="None"
                         IsSwipeEnabled="false"
                         IsItemClickEnabled="True"
                         ItemClick="ItemView_ItemClick">
                     </GridView>
+                        <Image Source="Assets/nearest.png" Stretch="None" HorizontalAlignment="Left" VerticalAlignment="Top"
+                               Canvas.ZIndex="2000" Canvas.Left="0" Margin="-70,20,0,0"/>
+                    </Grid>
+                </DataTemplate>
+            </HubSection>
+
+            <HubSection IsHeaderInteractive="True" DataContext="{Binding Section4Items}" 
+                        d:DataContext="{Binding Groups[3], Source={d:DesignData Source=/DataModel/SampleData.json, Type=data:SampleDataSource}}"
+                        Padding="40,40,40,32">
+                <DataTemplate>
+                    <Grid>
+                        <GridView
+                        x:Name="itemGridView"
+                        ItemsSource="{Binding LastPhotoItems}"
+                        Margin="-43,-14,0,0"
+                        DataContext="{Binding Main, Source={StaticResource Locator}}" 
+                        AutomationProperties.AutomationId="ItemGridView"
+                        AutomationProperties.Name="Items In Group"
+                        ItemTemplate="{StaticResource StandardPhotoItemTemplate}"
+                        SelectionMode="None"
+                        IsSwipeEnabled="false"
+                        IsItemClickEnabled="True"
+                        ItemClick="ItemView_ItemClick">
+                        </GridView>
+                        <Image Source="Assets/active_group.png" Stretch="None" HorizontalAlignment="Left" VerticalAlignment="Top"
+                               Canvas.ZIndex="2000" Canvas.Left="0" Margin="-70,20,0,0"/>
+                    </Grid>
                 </DataTemplate>
             </HubSection>
             <!--<HubSection x:Uid="Section4Header" Header="Section 4">

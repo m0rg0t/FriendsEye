@@ -29,6 +29,36 @@ namespace FriendsEyeAssist_w8.Model
                 RaisePropertyChanged("ObjectId");
             }
         }
+
+        private int _category;
+        /// <summary>
+        /// Категория 
+        /// </summary>
+        public int Category
+        {
+            get { return _category; }
+            set { 
+                _category = value;
+                RaisePropertyChanged("Category");
+                RaisePropertyChanged("CategoryStatus");
+            }
+        }
+
+        public string CategoryStatus
+        {
+            private set
+            {
+
+            }
+            get
+            {
+                switch (this.Category)
+                {
+                    case 1: return "Рассмотрен";
+                    default: return "Ждет рассмотрения";
+                };
+            }
+        }
         
 
         private string _comment;
@@ -70,15 +100,15 @@ namespace FriendsEyeAssist_w8.Model
             }
         }
 
-        private DateTime _updatedAT;
+        private DateTime _updatedAt;
         /// <summary>
         /// 
         /// </summary>
         public DateTime UpdatedAt
         {
-            get { return _updatedAT; }
+            get { return _updatedAt; }
             set { 
-                _updatedAT = value;
+                _updatedAt = value;
                 RaisePropertyChanged("UpdatedAt");
             }
         }

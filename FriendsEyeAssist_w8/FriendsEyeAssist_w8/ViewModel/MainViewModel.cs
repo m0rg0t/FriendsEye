@@ -4,6 +4,11 @@ using Parse;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Linq;
+using Windows.UI.Xaml;
+using System.Net.Http;
+using Windows.Devices.Geolocation;
+using System;
 
 namespace FriendsEyeAssist_w8.ViewModel
 {
@@ -64,6 +69,66 @@ namespace FriendsEyeAssist_w8.ViewModel
             }
         }
 
+        public bool IsLoaded
+        {
+            private set
+            {
+            }
+            get
+            {
+                return !Loading;
+            }
+        }
+
+        public double Lat = 55.758;
+        public double Lon = 37.611;
+
+        public async Task<bool> GetCurrentPosition()
+        {
+            try
+            {
+                var geolocator = new Geolocator();
+                Geoposition position = await geolocator.GetGeopositionAsync();
+                var str = position.ToString();
+                Lat = position.Coordinate.Latitude;
+                Lon = position.Coordinate.Longitude;
+                //await GetPlaceInfo(Lat, Lon);
+            }
+            catch
+            {
+                //GetPlaceInfo(Lat, Lon);
+            };
+            return true;
+        }
+
+        public async Task<string> MakeWebRequest(string url = "")
+        {
+            HttpClient http = new System.Net.Http.HttpClient();
+            HttpResponseMessage response = await http.GetAsync(url);
+            return await response.Content.ReadAsStringAsync();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Visibility LoadingVisibility
+        {
+            get
+            {
+                if (IsLoaded)
+                {
+                    return Visibility.Visible;
+                }
+                else
+                {
+                    return Visibility.Collapsed;
+                };
+            }
+            private set
+            {
+            }
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -73,7 +138,7 @@ namespace FriendsEyeAssist_w8.ViewModel
             try
             {
                 // User's location
-                var userGeoPoint = new ParseGeoPoint(); //MyCoordinate.Latitude, MyCoordinate.Longitude
+                var userGeoPoint = new ParseGeoPoint(this.Lat, this.Lon); //MyCoordinate.Latitude, MyCoordinate.Longitude
                 // Create a query for places
                 var query = ParseObject.GetQuery("AssistPhoto");
                 //Interested in locations near user.
@@ -109,6 +174,7 @@ namespace FriendsEyeAssist_w8.ViewModel
             {
                 var PhotoItem = new AssistsPhoto();
                 //PhotoItem.Title = item.Get<string>("title");
+                PhotoItem.Category = item.Get<int>("category");
                 PhotoItem.Comment = item.Get<string>("comment");
                 PhotoItem.Lat = item.Get<double>("lat");
                 PhotoItem.Lon = item.Get<double>("lon");
@@ -187,6 +253,23 @@ namespace FriendsEyeAssist_w8.ViewModel
             }
         }
 
+        public ObservableCollection<AssistsPhoto> LastPhotoItems
+        {
+            set { }
+            get
+            {
+                ObservableCollection<AssistsPhoto> items = new ObservableCollection<AssistsPhoto>();
+                try
+                {
+                    items = new ObservableCollection<AssistsPhoto>(this.PhotoItems.Take(2));
+                }
+                catch
+                {
+                };
+                return items;
+            }
+        }
+
 
         private ObservableCollection<AssistsPhoto> _photoItems = new ObservableCollection<AssistsPhoto>();
         /// <summary>
@@ -199,6 +282,23 @@ namespace FriendsEyeAssist_w8.ViewModel
             {
                 _photoItems = value;
                 RaisePropertyChanged("PhotoItems");
+                RaisePropertyChanged("LastPhotoItems");
+            }
+        }
+
+        public ObservableCollection<AssistsPhoto> LastNearestPhotoItems
+        {
+            set { }
+            get
+            {
+                ObservableCollection<AssistsPhoto> items = new ObservableCollection<AssistsPhoto>();
+                try
+                {
+                    items = new ObservableCollection<AssistsPhoto>(this.NearestPhotoItems.Take(2));
+                }
+                catch {                    
+                };
+                return items;
             }
         }
 
@@ -215,6 +315,9 @@ namespace FriendsEyeAssist_w8.ViewModel
                 RaisePropertyChanged("PhotoItems");
             }
         }
+
+
+
 
         private AssistsPhoto _currentItem = new AssistsPhoto();
         /// <summary>
@@ -233,11 +336,14 @@ namespace FriendsEyeAssist_w8.ViewModel
         public async Task<bool> LoadData()
         {
             this.Loading = true;
-            //await GetCurrentCoordinate();
+            
             try
             {
+                await GetCurrentPosition();
                 await LoadNearPhotos();
                 await LoadSomePlaces();
+                RaisePropertyChanged("LastPhotoItems");
+                RaisePropertyChanged("LastNearestPhotoItems");
             }
             catch { };
             this.Loading = false;
