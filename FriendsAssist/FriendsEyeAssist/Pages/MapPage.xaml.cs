@@ -44,7 +44,18 @@ namespace BitBankWP_places_app.Pages
             }
 
             PlaceMap.Layers.Add(mapLayer);
-            PlaceMap.Center = ViewModelLocator.MainStatic.PhotoItems.FirstOrDefault().Position;
+            //PlaceMap.Center = ViewModelLocator.MainStatic.PhotoItems.FirstOrDefault().Position;
+            try
+            {
+                PlaceMap.Center = ViewModelLocator.MainStatic.MyCoordinate;
+            }
+            catch {
+                try
+                {
+                    PlaceMap.Center = ViewModelLocator.MainStatic.PhotoItems.FirstOrDefault().Position;
+                }
+                catch { };
+            };
         }
 
         private void DrawMapMarker(GeoCoordinate coordinate, AssistsPhoto place, MapLayer mapLayer)

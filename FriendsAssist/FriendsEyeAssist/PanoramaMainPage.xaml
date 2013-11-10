@@ -30,6 +30,12 @@
 		</shell:ApplicationBar>
 	</phone:PhoneApplicationPage.ApplicationBar>
 
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator IsIndeterminate="true" 
+                                 IsVisible="{Binding Loading}" 
+                                 Text="Загрузка" />
+    </shell:SystemTray.ProgressIndicator>
+
     <!--LayoutRoot contains the root grid where all other page content is placed-->
     <Grid x:Name="LayoutRoot">
         <phone:Panorama Name="MainPanorama">
