@@ -202,5 +202,15 @@ namespace BitBankWP_places_app
             }
             catch { };
         }
+
+        private void NearestPlacesList_ItemTap(object sender, Telerik.Windows.Controls.ListBoxItemTapEventArgs e)
+        {
+            try
+            {
+                ViewModelLocator.MainStatic.CurrentItem = (this.NearestPlacesList.SelectedItem as AssistsPhoto);
+                this.NavigationService.Navigate(new Uri("/Pages/ViewPHotoPage.xaml", UriKind.Relative));
+            }
+            catch { };
+        }
     }
 }

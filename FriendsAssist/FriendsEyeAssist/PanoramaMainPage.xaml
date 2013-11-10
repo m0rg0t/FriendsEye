@@ -105,7 +105,7 @@
                         DataContext="{Binding Main, Source={StaticResource Locator}}" 
                         VerticalAlignment="Stretch"
                         HorizontalContentAlignment="Left" HorizontalAlignment="Stretch" 
-                        EmptyContent="{Binding Path=LocalizedResources.NoData, Source={StaticResource LocalizedStrings}}" ItemTap="CategoriesList_ItemTap">
+                        EmptyContent="{Binding Path=LocalizedResources.NoData, Source={StaticResource LocalizedStrings}}" ItemTap="NearestPlacesList_ItemTap">
                     </telerikData:RadJumpList>
                 </Grid>
             </phone:PanoramaItem>
