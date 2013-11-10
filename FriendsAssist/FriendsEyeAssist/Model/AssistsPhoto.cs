@@ -10,6 +10,7 @@ using System.Windows.Media.Imaging;
 using Parse;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using BitBankWP_places_app.ViewModel;
 
 namespace BitBankWP_places_app.Model
 {
@@ -219,6 +220,7 @@ namespace BitBankWP_places_app.Model
         {
             try
             {
+                ViewModelLocator.MainStatic.Loading = true;
                 // Create a query for places
                 var query = from comment in ParseObject.GetQuery("AssistAnswer")
                             where comment.Get<string>("photoId") == this.ObjectId.ToString()
@@ -235,8 +237,8 @@ namespace BitBankWP_places_app.Model
                         var cItem = new AssistAnswer();
                         cItem.UserId = item.Get<string>("userId");
                         cItem.Comment = item.Get<string>("comment");
-                        cItem.UserName = item.Get<string>("userName");
-                        cItem.UserImage = item.Get<string>("userImage");
+                        cItem.UserName = item.Get<string>("authorUsername");
+                        cItem.UserImage = item.Get<string>("authorImage");
                         cItem.PhotoId = item.Get<string>("photoId");
                         cItem.ObjectId = item.ObjectId.ToString();
                         cItem.CreatedDate = item.CreatedAt.Value;
@@ -250,6 +252,7 @@ namespace BitBankWP_places_app.Model
                 this.AssistsAnswersItems = answersList;
             }
             catch { };
+            ViewModelLocator.MainStatic.Loading = false;
             return true;
         }
 
