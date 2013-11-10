@@ -1,4 +1,5 @@
-﻿using FriendsEyeAssist_w8.Common;
+﻿using Bing.Maps;
+using FriendsEyeAssist_w8.Common;
 using FriendsEyeAssist_w8.Controls;
 using FriendsEyeAssist_w8.Data;
 using FriendsEyeAssist_w8.ViewModel;
@@ -10,6 +11,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.ApplicationSettings;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -76,8 +78,23 @@ namespace FriendsEyeAssist_w8
             {
                 if (ViewModelLocator.MainStatic.PhotoItems.Count() < 1)
                 {
-                    ViewModelLocator.MainStatic.LoadData();
+                    await ViewModelLocator.MainStatic.LoadData();
                 };
+
+                try
+                {
+                    foreach (var item in ViewModelLocator.MainStatic.NearestPhotoItems)
+                    {
+                        var pushpin = new Pushpin();
+
+                        MapLayer.SetPosition(pushpin, new Location(item.Lat, item.Lon));
+                        pushpin.Name = item.ObjectId.ToString();
+                        pushpin.Tag = item.ObjectId.ToString();
+                        //pushpin.Tapped += pushpinTapped;
+                        CurrentMap.Children.Add(pushpin);
+                    };
+                }
+                catch { };
             }
             catch { };
         }
@@ -178,6 +195,47 @@ namespace FriendsEyeAssist_w8
         private void map_PointerWheelChanged(object sender, PointerRoutedEventArgs e)
         {
             e.Handled = true;
+        }
+
+        Map CurrentMap;
+
+        private void map_Loaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                CurrentMap = (sender as Map);
+                foreach (var item in ViewModelLocator.MainStatic.NearestPhotoItems)
+                {
+                    var pushpin = new Pushpin();
+
+                    MapLayer.SetPosition(pushpin, new Location(item.Lat, item.Lon));
+                    pushpin.Name = item.ObjectId.ToString();
+                    pushpin.Tag = item.ObjectId.ToString();
+                    //pushpin.Tapped += pushpinTapped;
+                    CurrentMap.Children.Add(pushpin);
+                };
+            }
+            catch { };
+        }
+
+        private void LoginArea_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            try
+            {
+                MessageDialog item = new MessageDialog("Авторизация пользователя");
+                item.ShowAsync();
+            }
+            catch { };
+        }
+
+        private void SingUpArea_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            try
+            {
+                MessageDialog item = new MessageDialog("Регистрация пользователя");
+                item.ShowAsync();
+            }
+            catch { };
         }
     }
 }

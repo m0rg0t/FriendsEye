@@ -145,6 +145,7 @@
     <Content Include="Assets\mainlogo.png" />
     <Content Include="Assets\nearest.png" />
     <Content Include="Assets\requests_history.png" />
+    <Content Include="Assets\test_data1.png" />
     <Content Include="protoWin-02_Images\Image.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

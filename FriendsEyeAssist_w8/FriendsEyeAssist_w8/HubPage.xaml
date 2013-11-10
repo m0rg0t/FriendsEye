@@ -25,7 +25,7 @@
                 </Border>
                 <StackPanel Grid.Row="1">
                 <Border Width="480" Height="94" Background="White">
-                    <TextBlock Text="Перекресток" Foreground="Black"/>
+                    <TextBlock Text="Перекресток" Foreground="Black" FontSize="22" FontFamily="Segoe UI Semibold" Margin="20"/>
                 </Border>
                 <Border Background="#E1E2DD" Width="480" Height="290">
                         <StackPanel Margin="20">
@@ -93,7 +93,7 @@
                     <Grid Width="1000">              
                 		<bm:Map x:Name="map"
                 			Credentials="AtWHaWcUiDBPpGfbyXlERRH40dgNra0bA3PHO5L05C4X9vrauIeApjBa9MKOxeTy" 
-                			ZoomLevel="10" Heading="14" Margin="-40,-140,-40,-80" ManipulationStarted="map_ManipulationStarted" PointerWheelChanged="map_PointerWheelChanged">
+                			ZoomLevel="12" Heading="14" Margin="-40,-140,-40,-80" ManipulationStarted="map_ManipulationStarted" PointerWheelChanged="map_PointerWheelChanged" Loaded="map_Loaded">
                 			<bm:Map.Center>
                 				<bm:Location Longitude="37.625911" Latitude="55.775039"/>
                 			</bm:Map.Center>
@@ -120,13 +120,13 @@
                 			<StackPanel Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="0,130">
                 				<Image Stretch="None" Source="Assets/mainlogo.png" />
                 			</StackPanel>
-                			<Border x:Name="LoginArea" Grid.Column="0" Grid.RowSpan="4" Background="#DB644E" Width="190" Height="190">
+                			<Border x:Name="LoginArea" Grid.Column="0" Grid.RowSpan="4" Background="#DB644E" Width="190" Height="190" Tapped="LoginArea_Tapped">
                 				<TextBlock Text="Log in" FontSize="20" 
                 					VerticalAlignment="Center" 
                 					HorizontalAlignment="Center"/>
                 			</Border>
                 			<Border x:Name="SingUpArea" Background="#DB644E" Grid.Column="1" Grid.RowSpan="6" 
-                				Width="190" Height="190">
+                				Width="190" Height="190" Tapped="SingUpArea_Tapped">
                 				<TextBlock Text="Sign up for FriendsEye" FontSize="20" TextWrapping="Wrap"
                 					VerticalAlignment="Center" 
                 					HorizontalAlignment="Center"/>
@@ -226,6 +226,11 @@
                         <Image Source="Assets/active_group.png" Stretch="None" HorizontalAlignment="Left" VerticalAlignment="Top"
                                Canvas.ZIndex="2000" Canvas.Left="0" Margin="-70,20,0,0"/>
                     </Grid>
+                </DataTemplate>
+            </HubSection>
+            <HubSection Width="2813" Margin="-80,0,0,0">
+                <DataTemplate>
+                    <Image Source="Assets/test_data1.png" Stretch="None"/>
                 </DataTemplate>
             </HubSection>
             <!--<HubSection x:Uid="Section4Header" Header="Section 4">
