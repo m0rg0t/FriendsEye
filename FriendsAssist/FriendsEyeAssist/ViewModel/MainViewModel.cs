@@ -73,12 +73,13 @@ namespace BitBankWP_places_app.ViewModel
 
                 IEnumerable<ParseObject> results = await query.FindAsync();
 
-                PhotoItems = new ObservableCollection<AssistsPhoto>();
+                NearestPhotoItems = new ObservableCollection<AssistsPhoto>();
                 NearestImages = new Collection<string>();
                 foreach (var item in results)
                 {
                     AddPlaceFromParseObject(item);
                 };
+                RaisePropertyChanged("NearestImages");
 
                 /*if (PhotoItems.Count < 1)
                 {
@@ -141,7 +142,6 @@ namespace BitBankWP_places_app.ViewModel
                 IEnumerable<ParseObject> results = await query.FindAsync();
 
                 PhotoItems = new ObservableCollection<AssistsPhoto>();
-                NearestImages = new Collection<string>();
                 foreach (var item in results)
                 {
                     AddPlaceFromParseObject(item, "active");
@@ -200,7 +200,7 @@ namespace BitBankWP_places_app.ViewModel
             get { return _nearestPlaceItems; }
             set { 
                 _nearestPlaceItems = value;
-                RaisePropertyChanged("PhotoItems");
+                RaisePropertyChanged("NearestPhotoItems");
             }
         }
 

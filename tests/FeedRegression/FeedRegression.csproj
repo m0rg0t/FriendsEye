@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType><TargetFramework>net10.0</TargetFramework>
+    <LangVersion>5</LangVersion><ImplicitUsings>disable</ImplicitUsings><Nullable>disable</Nullable>
+    <Flavor Condition="'$(Flavor)' == ''">Phone</Flavor>
+    <DefineConstants Condition="'$(Flavor)' == 'Phone'">PHONE</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(Flavor)' == 'Phone'">
+    <Compile Include="../../FriendsAssist/FriendsEyeAssist/ViewModel/MainViewModel.cs" Link="MainViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Flavor)' == 'Windows'">
+    <Compile Include="../../FriendsEyeAssist_w8/FriendsEyeAssist_w8/ViewModel/MainViewModel.cs" Link="MainViewModel.cs" />
+  </ItemGroup>
+</Project>

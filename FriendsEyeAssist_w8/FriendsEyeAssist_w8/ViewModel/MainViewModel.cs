@@ -57,7 +57,7 @@ namespace FriendsEyeAssist_w8.ViewModel
 
         private bool _loading;
         /// <summary>
-        /// загрузка
+        /// Г§Г ГЈГ°ГіГ§ГЄГ 
         /// </summary>
         public bool Loading
         {
@@ -148,12 +148,14 @@ namespace FriendsEyeAssist_w8.ViewModel
 
                 IEnumerable<ParseObject> results = await query.FindAsync();
 
-                PhotoItems = new ObservableCollection<AssistsPhoto>();
+                NearestPhotoItems = new ObservableCollection<AssistsPhoto>();
                 NearestImages = new Collection<string>();
                 foreach (var item in results)
                 {
                     AddPlaceFromParseObject(item);
                 };
+                RaisePropertyChanged("NearestImages");
+                RaisePropertyChanged("LastNearestPhotoItems");
 
                 /*if (PhotoItems.Count < 1)
                 {
@@ -215,11 +217,11 @@ namespace FriendsEyeAssist_w8.ViewModel
                 IEnumerable<ParseObject> results = await query.FindAsync();
 
                 PhotoItems = new ObservableCollection<AssistsPhoto>();
-                NearestImages = new Collection<string>();
                 foreach (var item in results)
                 {
                     AddPlaceFromParseObject(item, "active");
                 };
+                RaisePropertyChanged("LastPhotoItems");
             }
             catch { };
             return true;
@@ -312,7 +314,8 @@ namespace FriendsEyeAssist_w8.ViewModel
             set
             {
                 _nearestPlaceItems = value;
-                RaisePropertyChanged("PhotoItems");
+                RaisePropertyChanged("NearestPhotoItems");
+                RaisePropertyChanged("LastNearestPhotoItems");
             }
         }
 
@@ -321,7 +324,7 @@ namespace FriendsEyeAssist_w8.ViewModel
 
         private AssistsPhoto _currentItem = new AssistsPhoto();
         /// <summary>
-        /// Текущее место
+        /// Г’ГҐГЄГіГ№ГҐГҐ Г¬ГҐГ±ГІГ®
         /// </summary>
         public AssistsPhoto CurrentItem
         {
